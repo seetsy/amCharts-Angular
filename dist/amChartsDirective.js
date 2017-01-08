@@ -250,6 +250,14 @@ angular.module('amChartsDirective', []).directive('amChart', ['$q', function ($q
           // Render the chart
           renderChart();
 
+          // BINDINGS =========================================================================
+
+          $scope.$watch("options.data", function(newValue, oldValue) {
+            if(newValue != oldValue) {
+              chart.dataProvider = newValue;
+              chart.validateData();
+            }
+          });
 
           // EVENTS =========================================================================
 
